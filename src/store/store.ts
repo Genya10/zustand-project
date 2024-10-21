@@ -1,21 +1,6 @@
 import {create} from 'zustand'
 import {persist} from 'zustand/middleware'
-
-interface IBearStore {
-    bears: number
-    increasePopulation:()=> void
-    removeAllBears:()=> void
-}
-
-interface IUser {
-    id:number
-    name: string
-    email: string
-}
-interface IUserStore {
-    users:IUser[]
-    fetchUsers:() => Promise<void>
-}
+import { IBearStore, IUserStore } from '../types/interface'
 
 /*export const useBearStore = create<IBearStore>(set=>({
   bears:0,
@@ -36,10 +21,13 @@ persist(
 )
 
 export const useUserStore = create<IUserStore>(set => ({
-    users:[],
-    fetchUsers: async()=> {
-        const res = await fetch('https://jsonplaceholder.typecode.com/users')
-        const users = await res.json()
-        set({users})
-    }
+  data:[],
+  fetchUsers: async() =>{
+    const result = await fetch('https://jsonplaceholder.typicode.com/todos?_page=3&_limit=20')
+    const data = await result.json()
+    set({data})
+  }
 }))
+
+
+

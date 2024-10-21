@@ -1,12 +1,17 @@
 import { useBearStore, useUserStore } from "./store/store"
+import { useEffect } from "react"
 
 export function BearCounter(){
     const bears = useBearStore(state => state.bears)
     const increasePopulation = useBearStore(state => state.increasePopulation)
     const removeAllBears = useBearStore(state => state.removeAllBears)
 
-    const users = useUserStore(state => state.users)
+    const data = useUserStore(state => state.data)
     const fetchUsers = useUserStore(state => state.fetchUsers)
+
+    useEffect(()=>{
+      fetchUsers()
+    },[fetchUsers])
 
     return (
         <div>
@@ -15,12 +20,12 @@ export function BearCounter(){
             <button onClick={removeAllBears}>Remove bears</button>
             <div>
                 <h2>Users List</h2>
-                {users.length > 0 ? (
-                    <ul>
-                     {users.map((user)=> (
-                        <li key={user.id}>{user.name}</li>
+                {data.length > 0 ? (
+                    <ol>
+                     {data.map((todo)=> (
+                        <li key={todo.id}>{todo.title}</li>
                      ))}
-                    </ul>
+                    </ol>
                 ):(
                     <p>No users</p>
                 )}
