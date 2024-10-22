@@ -36,9 +36,9 @@ export function Todos(){
            value={filter}
            onChange={e => setFilter(e.target.value)}
         >
-            <option value='all'></option>
-            <option value='active'></option>
-            <option value='completed'></option>
+            <option value='all'>all</option>
+            <option value='active'>active</option>
+            <option value='completed'>completed</option>
         </select>
         <ul>
             {filteredTodoList.map(todo => (
