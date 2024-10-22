@@ -7,7 +7,6 @@ export function BearCounterAtom(){
     const [,increasePopulation] = useAtom(increasePopulationAtom)
     const [,removeAllBears] = useAtom(removeAllBearsAtom)
 
-
     return (
         <div>
             <h1>{bears}</h1>
